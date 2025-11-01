@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: desafio_rocket_postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=rocket
+      - POSTGRES_PASSWORD=rocket
+      - POSTGRES_DB=desafio_rocket

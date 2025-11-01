@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+</head>
+
+<body class="bg-neutral-900 w-full">
+    <div class="w-full mt-5 flex items-center justify-center flex-col text-center">
+        <h2 class="text-violet-600 text-4xl font-bold">Cursos</h2>
+        <form action="" th:action="@{/curso/detail}" method="post" id="submitForm" class="mt-11 mb-8">
+
+            <table class="rounded-lg overflow-hidden border-collapse h-fit text-base  text-white">
+                <thead>
+                    <tr class="bg-violet-600 text-white rounded-t-lg">
+                        <th class="rounded-tl-lg text-start py-2 px-4">Curso</th>
+                        <th class="text-start py-2 px-4">Categoria</th>
+                        <th class="text-start py-2 px-4">Professor(a)</th>
+                        <th class="text-start py-2 px-4">Ativo</th>
+                        <th class="text-start py-2 px-4 rounded-tr-lg"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="curso, iterStat : ${cursos}"
+                        th:classappend="${iterStat.index % 2 == 0} ? 'bg-neutral-800' : 'bg-neutral-700'"
+                        class="border-b border-zinc-600 rounded-2xl last:border-b-0">
+
+                        <td class="px-4 py-2 text-start capitalize" name="name" th:text="${curso.name}">Nome</td>
+                        <td class="px-4 py-2 text-start capitalize" name="category" th:text="${curso.category}">Categoria</td>
+                        <td class="px-4 py-2 text-start capitalize" name="professor" th:text="${curso.professor}">Professor</td>
+                        <td class="px-4 py-2 text-start capitalize" name="active" th:text="${curso.active} ? 'Sim' : 'Não'">Ativo</td>
+                        <td class="text-start bg-neutral-600 hover:bg-violet-600 transition-colors">
+                            <a th:href="@{/curso/detail(cursoId=${curso.id})}" class="font-semibold w-full h-full px-4 py-2 cursor-pointer">Detalhes</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <a href="/curso/create"
+            class="bg-violet-600 text-white w-[120px] h-[51px] font-bold flex items-center justify-center p-4 rounded-lg hover:bg-violet-900 mb-5">Novo
+            curso</a>
+    </div>
+
+</body>
+<!-- <script>
+    document.getElementById("submitForm").addEventListener("submit", (event) => {
+        event.preventDefault(); // <-- agora ela é chamada
+        console.log("Formulário bloqueado corretamente!");
+    });
+</script> -->
+
+</html>

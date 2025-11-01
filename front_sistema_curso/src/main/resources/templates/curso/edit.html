@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+</head>
+
+<body class="bg-neutral-900 w-full h-screen">
+    <div class="w-full h-screen flex items-center justify-center flex-col text-center">
+        <h2 class="text-violet-600 text-4xl font-bold">Cursos</h2>
+
+        <form th:action="@{/curso/edit(cursoId=${cursoId})}" method="post" th:object="${cursoDTO}"
+            class="mt-11 flex flex-col gap-3 items-center text-base">
+            <!-- NOME -->
+            <div class="w-full">
+                <input th:field="*{name}" type="text" placeholder="Nome" class="px-3 py-4 w-full h-[51px] rounded-lg text-white bg-neutral-800 border border-zinc-700 
+                   hover:border-zinc-500 focus:outline-none focus:ring-violet-600 focus:ring-1 
+                   focus:border-violet-600 transition-all duration-200">
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                    class="text-red-400 text-sm mt-1 animate-fadeIn"></p>
+            </div>
+
+            <!-- CATEGORIA -->
+            <div class="w-full">
+                <input th:field="*{category}" type="text" placeholder="Categoria" class="px-3 py-4 w-full h-[51px] rounded-lg text-white bg-neutral-800 border border-zinc-700 
+                   hover:border-zinc-500 focus:outline-none focus:ring-violet-600 focus:ring-1 
+                   focus:border-violet-600 transition-all duration-200">
+                <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                    class="text-red-400 text-sm mt-1 animate-fadeIn"></p>
+            </div>
+
+            <!-- PROFESSOR -->
+            <div class="w-full">
+                <input th:field="*{professor}" type="text" placeholder="Professor(a)" class="px-3 py-4 w-full h-[51px] rounded-lg text-white bg-neutral-800 border border-zinc-700 
+                   hover:border-zinc-500 focus:outline-none focus:ring-violet-600 focus:ring-1 
+                   focus:border-violet-600 transition-all duration-200">
+                <p th:if="${#fields.hasErrors('professor')}" th:errors="*{professor}"
+                    class="text-red-400 text-sm mt-1 animate-fadeIn"></p>
+            </div>
+
+            <select name="active" th:field="*{active}"
+                class="px-3 py-2 w-[420px] h-[51px] rounded-lg text-white bg-neutral-800 border border-zinc-700 hover:border-zinc-500 focus:outline-none focus:ring-violet-600 focus:ring-1 focus:border-violet-600">
+                <option th:value="true" th:selected="*{active} == true">Ativo: Sim</option>
+                <option th:value="false" th:selected="*{active} == false">Ativo: Não</option>
+            </select>
+
+            <button type="submit"
+                class="bg-violet-600 text-white w-[120px] h-[51px] font-bold flex items-center justify-center p-4 rounded-lg mt-5 hover:bg-violet-900 cursor-pointer">Salvar</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

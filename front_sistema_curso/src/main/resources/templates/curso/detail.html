@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Curso</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+</head>
+
+<body class="bg-neutral-900 w-full h-screen">
+    <div class="w-full h-screen flex items-center justify-center flex-col text-center">
+        <h2 class="text-violet-600 text-4xl font-bold">Cursos</h2>
+
+        <div class="rounded-md w-[420px] mt-11 flex flex-col items-center justify-center text-white bg-neutral-800">
+            <p class="w-full rounded-t-lg h-[51px] bg-violet-600 px-7 py-4 text-start font-bold"
+                th:text="${#strings.capitalizeWords(curso.name)}">React</p>
+
+            <p class="w-full h-[51px] px-7 py-4 text-start">Curso:
+                <span th:text="${#strings.capitalizeWords(curso.name)}">React</span>
+            </p>
+
+            <p class="w-full h-[51px] px-7 py-4 text-start">Categoria:
+                <span th:text="${#strings.capitalizeWords(curso.category)}">Front End</span>
+            </p>
+
+            <p class="w-full h-[51px] px-7 py-4 text-start">Professor:
+                <span th:text="${#strings.capitalizeWords(curso.professor)}">Haroldo Henrique</span>
+            </p>
+
+            <p class="w-full h-[51px] px-7 py-4 text-start">Início: Desde
+                <span th:text="${#temporals.format(curso.createdAt, 'dd/MM/yyyy')}">04/03/2000</span>
+            </p>
+        </div>
+
+        <div class="mt-8 flex flex-row gap-5">
+            <a th:href="@{/curso/edit(cursoId=${curso.id})}"
+                class="w-[197px] bg-violet-600 rounded-lg text-white font-bold hover:bg-violet-900 px-12 py-4">
+                Editar curso
+            </a>
+
+            <form th:action="@{/curso/delete(cursoId=${curso.id})}" method="post"
+                onsubmit="return confirm('Tem certeza que deseja excluir o curso?');">
+                <button type="submit"
+                    class="w-[197px] bg-red-700 rounded-lg text-white font-bold hover:bg-red-800 px-12 py-4 cursor-pointer">
+                    Excluir curso
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
